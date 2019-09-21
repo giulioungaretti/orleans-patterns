@@ -3,6 +3,7 @@ using Microsoft.Azure.Cosmos.Table;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Orleans;
 using Orleans.Hosting;
 using Test.Orleans.Patterns.EventSourcing;
@@ -45,7 +46,8 @@ namespace Orleans.Testing.Utilities
             hostBuilder
                 .AddMemoryGrainStorageAsDefault()
                 .UseLocalhostClustering()
-                .ConfigureApplicationParts(parts => parts.AddFromApplicationBaseDirectory())
+                .ConfigureApplicationParts(parts => parts.AddFromApplicationBaseDirectory()
+                )
                 .ConfigureServices(services =>
                 {
                     services.AddSingleton(CloudTableFactory(Configuration));

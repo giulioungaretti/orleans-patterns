@@ -5,6 +5,7 @@ using System;
 using System.Diagnostics.Contracts;
 using Test.Orleans.Patterns.Contracts;
 using Test.Orleans.Patterns.EventSourcing;
+using EventS;
 
 namespace Test.Orleans.Patterns.Grains
 {
@@ -30,14 +31,25 @@ namespace Test.Orleans.Patterns.Grains
             switch (curr.BusinessEventEnum)
             {
                 default:
-                case (int) NumberOperation.Add:
-                {
-                    var currPayload = curr.GetValue<Number>();
-                    var value = new Number((seedPayload?.Value ?? 0) + (currPayload?.Value ?? 0));
+                case (int)NumberOperation.Add:
+                    {
+                        var currPayload = curr.GetValue<Number>();
+                        var value = new Number((seedPayload?.Value ?? 0) + (currPayload?.Value ?? 0));
 
-                    return (id, timestamp, value);
-                }
+                        return (id, timestamp, value);
+                    }
             }
         }
+    }
+
+    public class AddingAggregatorGrain2 : EventAggregatorGrain<EventS.Real.Number>, IAddingAggregatorGrainF
+    {
+        public AddingAggregatorGrain2(CloudTable eventsTable, ILogger<AddingAggregatorGrain2> logger) : base(eventsTable, logger) { }
+
+        protected override Func<(Guid, DateTimeOffset, EventS.Real.Number)> InitializeSeed(EventS.Real.Number seed) =>
+            EventS.Real.InitializeSeed(seed);
+
+        protected override (Guid, DateTimeOffset, EventS.Real.Number) ProcessEvent((Guid, DateTimeOffset, EventS.Real.Number) seed, BusinessEvent curr) =>
+            EventS.Real.ProcessEvent(seed, curr);
     }
 }

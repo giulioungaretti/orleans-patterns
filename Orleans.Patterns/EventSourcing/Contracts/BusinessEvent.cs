@@ -7,7 +7,7 @@ namespace Orleans.Patterns.EventSourcing
     [Serializable]
     public class BusinessEvent : TableEntity, IBusinessEvent
     {
-        public BusinessEvent() {}
+        public BusinessEvent() { }
 
         public BusinessEvent(int businessEventEnum, string payloadType, string payloadJson)
         {
@@ -20,18 +20,16 @@ namespace Orleans.Patterns.EventSourcing
             RowKey = EventTimestamp.Ticks.ToString();
         }
 
-        public int BusinessEventEnum         { get; set; }
-        public Guid EventIdentifier          { get; set; }
+        public int BusinessEventEnum { get; set; }
+        public Guid EventIdentifier { get; set; }
         public DateTimeOffset EventTimestamp { get; set; }
-        public string PayloadType            { get; set; }
-        public string PayloadJson            { get; set; }
+        public string PayloadType { get; set; }
+        public string PayloadJson { get; set; }
 
         public T GetValue<T>()
         {
-            var payloadType = Type.GetType(PayloadType);
-            var storedVersionPayload = JsonConvert.DeserializeObject(PayloadJson, payloadType);
-            var returnVersionPayload = storedVersionPayload.DynamicCast<T>();
-            return returnVersionPayload;
+            var storedVersionPayload = JsonConvert.DeserializeObject<T>(PayloadJson);
+            return storedVersionPayload;
         }
     }
 

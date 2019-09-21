@@ -39,7 +39,7 @@ namespace Orleans.Patterns.EventSourcing
         }
     }
 
-    public abstract class EventAggregatorGrain<T>: Grain<EventAggregatorState>, IEventAggregatorGrain
+    public abstract class EventAggregatorGrain<T> : Grain<EventAggregatorState>, IEventAggregatorGrain
     {
         protected EventAggregatorGrain(IConfiguration configuration, ILogger<EventAggregatorGrain<T>> logger) :
             this(configuration.EventsTable(), logger)
@@ -80,7 +80,10 @@ namespace Orleans.Patterns.EventSourcing
             return State.GetValue<T>();
         }
 
-        async Task<X> IEventAggregatorGrain.GetValue<X>() =>
-            (await GetValue()).DynamicCast<X>();
+        async Task<X> IEventAggregatorGrain.GetValue<X>()
+        {
+            await RefreshState();
+            return State.GetValue<X>();
+        }
     }
 }

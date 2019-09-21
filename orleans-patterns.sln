@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orleans.Patterns", "Orleans
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Orleans.Patterns", "Test.Orleans.Patterns\Test.Orleans.Patterns.csproj", "{BDD45631-C9FF-4F41-83C9-D0B8F8D5E09B}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "EventS", "EventS\EventS.fsproj", "{861B5ECA-E1DA-4BFC-8466-9B9F19BE8B14}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,18 @@ Global
 		{BDD45631-C9FF-4F41-83C9-D0B8F8D5E09B}.Release|x64.Build.0 = Release|Any CPU
 		{BDD45631-C9FF-4F41-83C9-D0B8F8D5E09B}.Release|x86.ActiveCfg = Release|Any CPU
 		{BDD45631-C9FF-4F41-83C9-D0B8F8D5E09B}.Release|x86.Build.0 = Release|Any CPU
+		{861B5ECA-E1DA-4BFC-8466-9B9F19BE8B14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{861B5ECA-E1DA-4BFC-8466-9B9F19BE8B14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{861B5ECA-E1DA-4BFC-8466-9B9F19BE8B14}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{861B5ECA-E1DA-4BFC-8466-9B9F19BE8B14}.Debug|x64.Build.0 = Debug|Any CPU
+		{861B5ECA-E1DA-4BFC-8466-9B9F19BE8B14}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{861B5ECA-E1DA-4BFC-8466-9B9F19BE8B14}.Debug|x86.Build.0 = Debug|Any CPU
+		{861B5ECA-E1DA-4BFC-8466-9B9F19BE8B14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{861B5ECA-E1DA-4BFC-8466-9B9F19BE8B14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{861B5ECA-E1DA-4BFC-8466-9B9F19BE8B14}.Release|x64.ActiveCfg = Release|Any CPU
+		{861B5ECA-E1DA-4BFC-8466-9B9F19BE8B14}.Release|x64.Build.0 = Release|Any CPU
+		{861B5ECA-E1DA-4BFC-8466-9B9F19BE8B14}.Release|x86.ActiveCfg = Release|Any CPU
+		{861B5ECA-E1DA-4BFC-8466-9B9F19BE8B14}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

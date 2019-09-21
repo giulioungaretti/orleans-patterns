@@ -47,4 +47,14 @@ namespace Test.Orleans.Patterns.Grains
             }
         }
     }
+    public class ComplexAddingAggregatorGrain2 : EventAggregatorGrain<EventS.Complex.Number>, IComplexAddingAggregatorGrainF
+    {
+        public ComplexAddingAggregatorGrain2(CloudTable eventsTable, ILogger<ComplexAddingAggregatorGrain2> logger) : base(eventsTable, logger) { }
+
+        protected override Func<(Guid, DateTimeOffset, EventS.Complex.Number)> InitializeSeed(EventS.Complex.Number seed) =>
+            EventS.Complex.InitializeSeed(seed);
+
+        protected override (Guid, DateTimeOffset, EventS.Complex.Number) ProcessEvent((Guid, DateTimeOffset, EventS.Complex.Number) seed, BusinessEvent curr) =>
+            EventS.Complex.ProcessEvent(seed, curr);
+    }
 }
